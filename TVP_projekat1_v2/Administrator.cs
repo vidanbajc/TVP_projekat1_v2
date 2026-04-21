@@ -68,14 +68,11 @@ namespace TVP_projekat1_v2
 
             else
             {
-                DataSet ds = new DataSet();
-                ds.ReadXml("korisnici.xml");
-
                 string korisnicko_ime = tb_korisnicko_ime.Text;
 
-                foreach (DataRow r in ds.Tables[0].Rows)
+                foreach (Korisnik k in Podaci.korisnici)
                 {
-                    if (r[3].ToString() == korisnicko_ime)
+                    if (k.korisnicko_ime1.ToString() == korisnicko_ime)
                     {
                         MessageBox.Show($"Korisnicko ime {korisnicko_ime} je zauzeto, pokusajte ponovo!", "Upozorenje", MessageBoxButtons.OK);
                         return;
@@ -97,12 +94,10 @@ namespace TVP_projekat1_v2
                 Podaci.Sacuvaj();
 
                 dataGridView1.DataSource = null;
-                ds.Clear();
-                ds.ReadXml("korisnici.xml");
-                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.DataSource = Podaci.korisnici;
 
-                Ocisti();
                 MessageBox.Show("Uspesno ste dodali novog korisnika!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
             }
         }
 
@@ -129,10 +124,8 @@ namespace TVP_projekat1_v2
                     return;
                 }
 
-                // Administrator.cs - Dugme Dodaj za Destinaciju - admin ne moze da napravi novu destinaciju/izlet, ako takva skroz ista (bez id) vec postoji
-
-                DataSet ds = new DataSet();
-                // dodaj da cita xml i poredi da li se podaci odozgo poklapaju
+                // Dugme Dodaj za Destinaciju - admin ne moze da napravi novu destinaciju/izlet, ako takva skroz ista (bez id) vec postoji
+                // videti oko datuma, nije mi prihvatilo danasnji datum
 
                 int id = Podaci.NoviIdDestinacija();
 
@@ -151,12 +144,10 @@ namespace TVP_projekat1_v2
                 Podaci.Sacuvaj();
 
                 dataGridView2.DataSource = null;
-                ds.Clear();
-                ds.ReadXml("destinacije.xml");
-                dataGridView2.DataSource = ds.Tables[0];
+                dataGridView2.DataSource = Podaci.destinacije;
 
-                Ocisti();
                 MessageBox.Show("Uspesno ste dodali novu destinaciju!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
             }
 
             else
@@ -165,6 +156,7 @@ namespace TVP_projekat1_v2
 
         private void dodaj_rezervaciju_Click(object sender, EventArgs e)
         {
+            // videti oko datuma, nije mi prihvatilo danasnji datum
             if (string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) || string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text) ||
                    string.IsNullOrWhiteSpace(tb_uk_cena.Text) || string.IsNullOrWhiteSpace(tb_br_rezervisanih_mesta.Text))
             {
@@ -182,28 +174,28 @@ namespace TVP_projekat1_v2
                     return;
                 }
 
-                Korisnik k = null;
-                Destinacija d = null;
+                Korisnik kor = null;
+                Destinacija des = null;
 
-                foreach (var korisnik in Podaci.korisnici)
+                foreach (Korisnik k in Podaci.korisnici)
                 {
-                    if (korisnik.id_korisnika == id_korisnika)
+                    if (k.id_korisnika == id_korisnika)
                     {
-                        k = korisnik;
+                        kor = k;
                         break;
                     }
                 }
 
-                foreach (var destinacija in Podaci.destinacije)
+                foreach (Destinacija d in Podaci.destinacije)
                 {
-                    if (destinacija.id_destinacije == id_izleta)
+                    if (d.id_destinacije == id_izleta)
                     {
-                        d = destinacija;
+                        des = d;
                         break;
                     }
                 }
 
-                if (k == null || d == null)
+                if (kor == null || des == null)
                 {
                     MessageBox.Show("Morate uneti postojece korisnike i destinacije (id)!", "Upozorenje", MessageBoxButtons.OK);
                     return;
@@ -221,35 +213,30 @@ namespace TVP_projekat1_v2
                 Podaci.Sacuvaj();
 
                 dataGridView3.DataSource = null;
-                DataSet ds = new DataSet();
-                ds.ReadXml("rezervacije.xml");
-                dataGridView3.DataSource = ds.Tables[0];
+                dataGridView3.DataSource = Podaci.rezervacije;
 
-                Ocisti();
                 MessageBox.Show("Uspesno ste dodali novu rezervaciju!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
             }
         }
 
         private void izmeni_korisnika_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_korisnik.Text))
+            if (dataGridView1.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_korisnik.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("korisnici.xml");
-
             DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
+            Korisnik nadjen = null;
             string id = red.Cells[0].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            foreach (Korisnik k in Podaci.korisnici)
             {
-                if (r[0].ToString() == id)
+                if (k.id_korisnika.ToString() == id)
                 {
-                    nadjen = r;
+                    nadjen = k;
                     break;
                 }
             }
@@ -273,49 +260,44 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            // Administrator.cs - Dugme Izmeni za Korisnika - obezbediti da korisnicko_ime ne moze da bude promenjeno u isto ili vec postojece.
+            // Dugme Izmeni za Korisnika - obezbedi da korisnicko_ime ne moze da bude promenjeno u isto ili vec postojece.
 
-            nadjen[1] = tb_ime.Text;
-            nadjen[2] = tb_prezime.Text;
-            nadjen[3] = tb_korisnicko_ime.Text;
-            nadjen[4] = tb_lozinka.Text;
-            nadjen[5] = tb_vrsta.Text;
+            nadjen.ime = tb_ime.Text;
+            nadjen.prezime = tb_prezime.Text;
+            nadjen.korisnicko_ime1 = tb_korisnicko_ime.Text;
+            nadjen.lozinka = tb_lozinka.Text;
+            nadjen.vrsta_korisnika = tb_vrsta.Text;
 
-            ds.WriteXml("korisnici.xml");
+            Podaci.Sacuvaj();
 
             dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("korisnici.xml");
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = Podaci.korisnici;
 
-            Ocisti();
             MessageBox.Show("Uspesno ste izmenili podatke o korisniku!", "Obavestenje", MessageBoxButtons.OK);
+            Ocisti();
         }
 
         private void izmeni_destinaciju_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_destinacije.Text))
+            if (dataGridView2.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_destinacije.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("destinacije.xml");
-
-            /*Administrator.cs - Dugme Izmeni za Destinaciju - ogranici da admin ne moze da izmeni destinaciju, ako za istu vec postoji rezervacija
+            /*Dugme Izmeni za Destinaciju - ogranici da admin ne moze da izmeni destinaciju, ako za istu vec postoji rezervacija
                      niti moze da je promeni da bude ista kao neka koja vec postoji
                      niti destinacija sme da bude u proslosti od DataTime.Today (imas kod u Dodaj)*/
 
-            DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
+            DataGridViewRow red = dataGridView2.CurrentRow;
+            Destinacija nadjen = null;
             string id = red.Cells[0].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            foreach (Destinacija d in Podaci.destinacije)
             {
-                if (r[0].ToString() == id)
+                if (d.id_destinacije.ToString() == id)
                 {
-                    nadjen = r;
+                    nadjen = d;
                     break;
                 }
             }
@@ -333,48 +315,47 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            nadjen[1] = tb_mesto.Text;
-            nadjen[2] = tb_drzava.Text;
-            nadjen[3] = tb_cena.Text;
-            nadjen[4] = tb_popust.Text;
-            nadjen[5] = tb_br_dana.Text;
-            nadjen[6] = tb_uk_mesta.Text;
+            //tryparse umesto neproverenog convert
+            nadjen.mesto = tb_mesto.Text;
+            nadjen.drzava = tb_drzava.Text;
+            nadjen.cena = Convert.ToInt32(tb_cena.Text);
+            nadjen.popust = Convert.ToInt32(tb_popust.Text);
+            nadjen.br_dana = Convert.ToInt32(tb_br_dana.Text); 
+            nadjen.uk_mesta = Convert.ToInt32(tb_uk_mesta.Text);
             // mora da se gleda i oko datuma, da li sme da se menja, za izlet/destinaciju vrv treba, 
             // a za rezervaciju ne zato sto je datum nastao kada i sama rezervacija i nemoguce je to promeniti
 
             //ee a sada nzm za ovo razmisli sutra
             //nadjen[7] = dateTimePicker1.Value;
 
-            ds.WriteXml("destinacije.xml");
+            Podaci.Sacuvaj();
 
-            dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("destinacije.xml");
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = Podaci.destinacije;
 
-            Ocisti();
             MessageBox.Show("Uspesno ste izmenili podatke o destinaciji!", "Obavestenje", MessageBoxButtons.OK);
+            Ocisti();
         }
 
         private void izmeni_rezervaciju_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) && string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text))
+            if (dataGridView3.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) || string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("rezervacije.xml");
-
-            DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
+            DataGridViewRow red = dataGridView3.CurrentRow;
+            Rezervacija nadjen = null;
             string id_korisnika = red.Cells[0].Value.ToString();
             string id_izleta = red.Cells[1].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            //dodati jos neki uslov ako je korisnik rezervisao istu destinaciju dvaput 2.0
+            //na primer vreme
+
+            foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r[0].ToString() == id_korisnika && r[1].ToString() == id_izleta)
+                if (r.id_korisnika_r.ToString() == id_korisnika && r.id_destinacije_r.ToString() == id_izleta)
                 {
                     nadjen = r;
                     break;
@@ -395,22 +376,21 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            /*Administrator.cs - Dugme Izmeni za Rezervaciju - dodati proveru da li su novi podaci za uk_cena i br_rezervisanih validni
+            /*Dugme Izmeni za Rezervaciju - dodati proveru da li su novi podaci za uk_cena i br_rezervisanih validni
                      (imas kod u Dugme Dodaj za Destinaciju)*/
-
-            nadjen[2] = tb_uk_cena.Text;
-            nadjen[3] = tb_br_rezervisanih_mesta.Text;
+            //pa reko sam
+            //ubaciti tryparse ili nesto da proverimo da li uopste moze da konvertuje
+            nadjen.uk_cena = Convert.ToInt32(tb_uk_cena.Text);
+            nadjen.br_rezervisanih = Convert.ToInt32(tb_br_rezervisanih_mesta.Text);
             //nadjen[4] = dateTimePicker1.Value;
 
-            ds.WriteXml("rezervacije.xml");
+            Podaci.Sacuvaj();
 
-            dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("rezervacije.xml");
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView3.DataSource = null;
+            dataGridView3.DataSource = Podaci.rezervacije;
 
-            Ocisti();
             MessageBox.Show("Uspesno ste izmenili podatke o rezervaciji!", "Obavestenje", MessageBoxButtons.OK);
+            Ocisti();
         }
 
         private void obrisi_korisnika_Click(object sender, EventArgs e)
@@ -421,21 +401,15 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("korisnici.xml");
-
-            DataSet ds1 = new DataSet();
-            ds1.ReadXml("rezervacije.xml");
-
             DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
+            Korisnik nadjen = null;
             string id = red.Cells[0].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            foreach (Korisnik k in Podaci.korisnici)
             {
-                if (r[0].ToString() == id)
+                if (k.id_korisnika.ToString() == id)
                 {
-                    nadjen = r;
+                    nadjen = k;
                     break;
                 }
             }
@@ -445,15 +419,15 @@ namespace TVP_projekat1_v2
                 MessageBox.Show($"Korisnik sa id {id} nije pronadjen!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
-            else if (nadjen[3].ToString() == korisnicko_ime)
+            else if (nadjen.korisnicko_ime1.ToString() == korisnicko_ime)
             {
                 MessageBox.Show($"Ne mozete obrisati nalog preko koga ste prijavljeni!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            foreach (DataRow r in ds1.Tables[0].Rows)
+            foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r[0].ToString() == id)
+                if (r.id_korisnika_r.ToString() == id)
                 {
                     MessageBox.Show($"Nije moguce obrisati korisnika {tb_id_korisnik.Text} - {tb_korisnicko_ime.Text}, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
                     return;
@@ -463,46 +437,40 @@ namespace TVP_projekat1_v2
             DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete korisnika {tb_id_korisnik.Text} - {tb_korisnicko_ime.Text}?", "Pitanje", MessageBoxButtons.YesNo);
 
             if (yes_no == DialogResult.Yes)
-                nadjen.Delete();
+            {
+                Podaci.korisnici.Remove(nadjen);
+                Podaci.Sacuvaj();
+
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Podaci.korisnici;
+
+                MessageBox.Show($"Uspesno ste obrisali korisnika {tb_korisnicko_ime.Text}!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
+            }
             else
             {
                 Ocisti();
                 return;
             }
-
-            ds.WriteXml("korisnici.xml");
-
-            dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("korisnici.xml");
-            dataGridView1.DataSource = ds.Tables[0];
-
-            Ocisti();
-            MessageBox.Show($"Uspesno ste obrisali korisnika {tb_korisnicko_ime.Text}!", "Obavestenje", MessageBoxButtons.OK);
         }
 
         private void obrisi_destinaciju_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_destinacije.Text))
+            if (dataGridView2.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_destinacije.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("destinacije.xml");
-            DataSet ds1 = new DataSet();
-            ds1.ReadXml("rezervacije.xml");
-
-            DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
+            DataGridViewRow red = dataGridView2.CurrentRow;
+            Destinacija nadjen = null;
             string id = red.Cells[0].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            foreach (Destinacija d in Podaci.destinacije)
             {
-                if (r[0].ToString() == id)
+                if (d.id_destinacije.ToString() == id)
                 {
-                    nadjen = r;
+                    nadjen = d;
                     break;
                 }
             }
@@ -513,9 +481,9 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            foreach (DataRow r in ds1.Tables[0].Rows)
+            foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r[0].ToString() == id)
+                if (r.id_destinacije_r.ToString() == id)
                 {
                     MessageBox.Show($"Nije moguce obrisati destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
                     return;
@@ -525,43 +493,42 @@ namespace TVP_projekat1_v2
             DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}?", "Pitanje", MessageBoxButtons.YesNo);
 
             if (yes_no == DialogResult.Yes)
-                nadjen.Delete();
+            {
+                Podaci.destinacije.Remove(nadjen);
+                Podaci.Sacuvaj();
+
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = Podaci.destinacije;
+
+                MessageBox.Show($"Uspesno ste obrisali destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
+            }
             else
             {
                 Ocisti();
                 return;
             }
-
-            ds.WriteXml("destinacije.xml");
-
-            dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("destinacije.xml");
-            dataGridView1.DataSource = ds.Tables[0];
-
-            Ocisti();
-            MessageBox.Show($"Uspesno ste obrisali destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}!", "Obavestenje", MessageBoxButtons.OK);
         }
 
         private void obrisi_rezervaciju_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) && string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text))
+            if (dataGridView3.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) || string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
 
-            DataSet ds = new DataSet();
-            ds.ReadXml("rezervacije.xml");
+            DataGridViewRow red = dataGridView3.CurrentRow;
+            Rezervacija nadjen = null;
 
-            DataGridViewRow red = dataGridView1.CurrentRow;
-            DataRow nadjen = null;
             string id_korisnika = red.Cells[0].Value.ToString();
-            string id_izleta = red.Cells[1].Value.ToString();
+            string id_destinacije = red.Cells[1].Value.ToString();
 
-            foreach (DataRow r in ds.Tables[0].Rows)
+            foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r[0].ToString() == id_korisnika && r[1].ToString() == id_izleta)
+                //dodati jos neki uslov ako je korisnik rezervisao istu destinaciju dvaput
+                //na primer vreme
+                if (r.id_korisnika_r.ToString() == id_korisnika && r.id_destinacije_r.ToString() == id_destinacije)
                 {
                     nadjen = r;
                     break;
@@ -575,26 +542,25 @@ namespace TVP_projekat1_v2
             }
             else
             {
-                DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete rezervaciju {tb_id_korisnika_r.Text} - {tb_id_destinacije_r.Text} - {tb_uk_cena.Text}?", "Pitanje", MessageBoxButtons.YesNo);
+                DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete rezervaciju {id_korisnika} - {id_destinacije}?", "Pitanje", MessageBoxButtons.YesNo);
 
                 if (yes_no == DialogResult.Yes)
-                    nadjen.Delete();
+                {
+                    Podaci.rezervacije.Remove(nadjen);
+                    Podaci.Sacuvaj();
+
+                    dataGridView3.DataSource = null;
+                    dataGridView3.DataSource = Podaci.rezervacije;
+
+                    MessageBox.Show($"Uspesno ste obrisali rezervaciju {tb_id_korisnika_r.Text} - {tb_id_destinacije_r}!", "Obavestenje", MessageBoxButtons.OK);
+                    Ocisti();
+                }
                 else
                 {
                     Ocisti();
                     return;
                 }
             }
-
-            ds.WriteXml("rezervacije.xml");
-
-            dataGridView1.DataSource = null;
-            ds.Clear();
-            ds.ReadXml("rezervacije.xml");
-            dataGridView1.DataSource = ds.Tables[0];
-
-            Ocisti();
-            MessageBox.Show($"Uspesno ste obrisali rezervaciju {tb_id_korisnika_r.Text} - {tb_id_destinacije_r.Text} - {tb_uk_cena.Text}!", "Obavestenje", MessageBoxButtons.OK);
         }
 
         private void odjava1_Click(object sender, EventArgs e)
@@ -640,7 +606,7 @@ namespace TVP_projekat1_v2
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows != null)
+            if (dataGridView1.CurrentRow != null)
             {
                 DataGridViewRow red = dataGridView1.CurrentRow;
 
@@ -655,7 +621,7 @@ namespace TVP_projekat1_v2
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView2.SelectedRows != null)
+            if (dataGridView2.CurrentRow != null)
             {
                 DataGridViewRow red = dataGridView2.CurrentRow;
 
@@ -674,7 +640,7 @@ namespace TVP_projekat1_v2
 
         private void dataGridView3_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView3.SelectedRows != null)
+            if (dataGridView3.CurrentRow != null)
             {
                 DataGridViewRow red = dataGridView3.CurrentRow;
 

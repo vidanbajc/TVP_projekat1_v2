@@ -10,10 +10,18 @@
   </Korisnik>
   <Korisnik>
     <id_korisnika>2</id_korisnika>
-    <ime>Ilija</ime>
+    <ime>Izdaja</ime>
     <prezime>Colovic</prezime>
     <korisnicko_ime1>klijent</korisnicko_ime1>
     <lozinka>klijent</lozinka>
     <vrsta_korisnika>klijent</vrsta_korisnika>
+  </Korisnik>
+  <Korisnik>
+    <id_korisnika>3</id_korisnika>
+    <ime>s</ime>
+    <prezime>s</prezime>
+    <korisnicko_ime1>s</korisnicko_ime1>
+    <lozinka>s</lozinka>
+    <vrsta_korisnika>admin</vrsta_korisnika>
   </Korisnik>
 </ArrayOfKorisnik>

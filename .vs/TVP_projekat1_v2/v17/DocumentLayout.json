@@ -9,6 +9,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{136912B1-5A9E-4CBE-9368-5CD47D5A0E45}|TVP_projekat1_v2\\TVP_projekat1_v2.csproj|C:\\Users\\PC\\Desktop\\TVP_projekat1_v2\\tvp_projekat1_v2\\administrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{136912B1-5A9E-4CBE-9368-5CD47D5A0E45}|TVP_projekat1_v2\\TVP_projekat1_v2.csproj|solutionrelative:tvp_projekat1_v2\\administrator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{136912B1-5A9E-4CBE-9368-5CD47D5A0E45}|TVP_projekat1_v2\\TVP_projekat1_v2.csproj|c:\\users\\pc\\desktop\\tvp_projekat1_v2\\tvp_projekat1_v2\\podaci.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{136912B1-5A9E-4CBE-9368-5CD47D5A0E45}|TVP_projekat1_v2\\TVP_projekat1_v2.csproj|solutionrelative:tvp_projekat1_v2\\podaci.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Podaci.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\Desktop\\TVP_projekat1_v2\\TVP_projekat1_v2\\Podaci.cs",
+              "RelativeDocumentMoniker": "TVP_projekat1_v2\\Podaci.cs",
+              "ToolTip": "C:\\Users\\PC\\Desktop\\TVP_projekat1_v2\\TVP_projekat1_v2\\Podaci.cs",
+              "RelativeToolTip": "TVP_projekat1_v2\\Podaci.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T19:23:36.284Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,7 +45,7 @@
               "RelativeDocumentMoniker": "TVP_projekat1_v2\\Administrator.cs",
               "ToolTip": "C:\\Users\\PC\\Desktop\\TVP_projekat1_v2\\TVP_projekat1_v2\\Administrator.cs",
               "RelativeToolTip": "TVP_projekat1_v2\\Administrator.cs",
-              "ViewState": "AgIAAJsCAAAAAAAAAAAqwKYCAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-21T13:14:02.583Z",
               "EditorCaption": ""
@@ -42,7 +59,8 @@
               "ToolTip": "C:\\Users\\PC\\Desktop\\TVP_projekat1_v2\\TVP_projekat1_v2\\Administrator.cs [Design]",
               "RelativeToolTip": "TVP_projekat1_v2\\Administrator.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T13:13:58.066Z"
+              "WhenOpened": "2026-04-21T13:13:58.066Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

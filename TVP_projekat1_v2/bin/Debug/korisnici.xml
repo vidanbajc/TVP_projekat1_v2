@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Korisnik>
+    <id_korisnika>1</id_korisnika>
+    <ime>a</ime>
+    <prezime>a</prezime>
+    <korisnicko_ime1>a</korisnicko_ime1>
+    <lozinka>a</lozinka>
+    <vrsta_korisnika>admin</vrsta_korisnika>
+  </Korisnik>
+  <Korisnik>
+    <id_korisnika>2</id_korisnika>
+    <ime>Ilija</ime>
+    <prezime>Colovic</prezime>
+    <korisnicko_ime1>klijent</korisnicko_ime1>
+    <lozinka>klijent</lozinka>
+    <vrsta_korisnika>klijent</vrsta_korisnika>
+  </Korisnik>
+</ArrayOfKorisnik>

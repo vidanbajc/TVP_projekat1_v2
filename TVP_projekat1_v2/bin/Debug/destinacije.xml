@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfDestinacija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Destinacija>
+    <id_destinacije>1</id_destinacije>
+    <mesto>Arandjelovac</mesto>
+    <drzava>Srbija</drzava>
+    <cena>32000</cena>
+    <popust>6000</popust>
+    <br_dana>7</br_dana>
+    <uk_mesta>2</uk_mesta>
+    <datum_polaska>2026-04-21T00:00:00+02:00</datum_polaska>
+  </Destinacija>
+  <Destinacija>
+    <id_destinacije>2</id_destinacije>
+    <mesto>Topola</mesto>
+    <drzava>Srbija</drzava>
+    <cena>32000</cena>
+    <popust>4000</popust>
+    <br_dana>5</br_dana>
+    <uk_mesta>3</uk_mesta>
+    <datum_polaska>2026-04-21T00:00:00+02:00</datum_polaska>
+  </Destinacija>
+</ArrayOfDestinacija>

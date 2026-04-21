@@ -1,0 +1,12 @@
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\bin\Debug\TVP_projekat1_v2.exe.config
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\bin\Debug\TVP_projekat1_v2.exe
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\bin\Debug\TVP_projekat1_v2.pdb
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.Administrator.resources
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.Pocetna.resources
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.Properties.Resources.resources
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.csproj.GenerateResource.cache
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.exe
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.pdb
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.exe.config

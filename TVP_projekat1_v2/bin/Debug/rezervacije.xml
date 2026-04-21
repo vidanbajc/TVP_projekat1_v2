@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ArrayOfRezervacija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Rezervacija>
+    <id_korisnika_r>2</id_korisnika_r>
+    <id_destinacije_r>1</id_destinacije_r>
+    <uk_cena>32000</uk_cena>
+    <br_rezervisanih>2</br_rezervisanih>
+    <datum_vreme>2026-04-21T00:00:00+02:00</datum_vreme>
+  </Rezervacija>
+</ArrayOfRezervacija>

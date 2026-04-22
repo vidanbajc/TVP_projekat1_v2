@@ -56,9 +56,11 @@ namespace TVP_projekat1_v2
 
         private void dodaj_korisnika_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tb_ime.Text) || string.IsNullOrWhiteSpace(tb_prezime.Text) ||
-                   string.IsNullOrWhiteSpace(tb_korisnicko_ime.Text) || string.IsNullOrWhiteSpace(tb_lozinka.Text) ||
-                   string.IsNullOrWhiteSpace(tb_vrsta.Text))
+            if (string.IsNullOrWhiteSpace(tb_ime.Text) ||
+                string.IsNullOrWhiteSpace(tb_prezime.Text) ||
+                string.IsNullOrWhiteSpace(tb_korisnicko_ime.Text) ||
+                string.IsNullOrWhiteSpace(tb_lozinka.Text) ||
+                string.IsNullOrWhiteSpace(tb_vrsta.Text))
             {
                 MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
             }
@@ -110,7 +112,7 @@ namespace TVP_projekat1_v2
                 MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
             }
 
-            else if (dateTimePicker2.Value.Date <= DateTime.Now.Date)
+            else if (dateTimePicker2.Value.Date < DateTime.Now.Date)
                 MessageBox.Show("Morate uneti danasnji ili predstojeci datum!", "Upozorenje", MessageBoxButtons.OK);
 
             else if (double.TryParse(tb_cena.Text, out double cena) &&
@@ -120,12 +122,24 @@ namespace TVP_projekat1_v2
             {
                 if (cena < 0 || popust < 0 || br_dana < 1 || uk_mesta < 1)
                 {
-                    MessageBox.Show("Morate uneti ispravne brojeve (+)!");
+                    MessageBox.Show("Morate uneti ispravne brojeve (+)!", "Upozorenje", MessageBoxButtons.OK);
                     return;
                 }
 
-                // Dugme Dodaj za Destinaciju - admin ne moze da napravi novu destinaciju/izlet, ako takva skroz ista (bez id) vec postoji
-                // videti oko datuma, nije mi prihvatilo danasnji datum
+                foreach(Destinacija d in Podaci.destinacije)
+                {
+                    if (d.mesto == tb_mesto.Text &&
+                        d.drzava == tb_drzava.Text &&
+                        d.cena == cena &&
+                        d.popust == popust &&
+                        d.br_dana == br_dana &&
+                        d.uk_mesta == uk_mesta &&
+                        d.datum_polaska.Date == dateTimePicker2.Value.Date)
+                    {
+                        MessageBox.Show("Ova destinacija vec postoji!", "Upozorenje", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
 
                 int id = Podaci.NoviIdDestinacija();
 
@@ -156,9 +170,10 @@ namespace TVP_projekat1_v2
 
         private void dodaj_rezervaciju_Click(object sender, EventArgs e)
         {
-            // videti oko datuma, nije mi prihvatilo danasnji datum
-            if (string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) || string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text) ||
-                   string.IsNullOrWhiteSpace(tb_uk_cena.Text) || string.IsNullOrWhiteSpace(tb_br_rezervisanih_mesta.Text))
+            if (string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) ||
+                string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text) ||
+                string.IsNullOrWhiteSpace(tb_uk_cena.Text) ||
+                string.IsNullOrWhiteSpace(tb_br_rezervisanih_mesta.Text))
             {
                 MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
             }
@@ -170,7 +185,7 @@ namespace TVP_projekat1_v2
             {
                 if (uk_cena < 0 || broj_rezervisanih < 1)
                 {
-                    MessageBox.Show("Morate uneti ispravne brojeve (+)!");
+                    MessageBox.Show("Morate uneti ispravne brojeve (+)!", "Upozorenje", MessageBoxButtons.OK);
                     return;
                 }
 
@@ -218,6 +233,8 @@ namespace TVP_projekat1_v2
                 MessageBox.Show("Uspesno ste dodali novu rezervaciju!", "Obavestenje", MessageBoxButtons.OK);
                 Ocisti();
             }
+            else
+                MessageBox.Show("Niste uneli dobre podatke!", "Upozorenje", MessageBoxButtons.OK);
         }
 
         private void izmeni_korisnika_Click(object sender, EventArgs e)
@@ -260,7 +277,25 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            // Dugme Izmeni za Korisnika - obezbedi da korisnicko_ime ne moze da bude promenjeno u isto ili vec postojece.
+            if(nadjen.ime == tb_ime.Text &&
+               nadjen.prezime == tb_prezime.Text &&
+               nadjen.korisnicko_ime1 == tb_korisnicko_ime.Text &&
+               nadjen.lozinka == tb_lozinka.Text &&
+               nadjen.vrsta_korisnika == tb_vrsta.Text)
+            {
+                MessageBox.Show("Niste izvrsili nikakvu izmenu!", "Upozorenje", MessageBoxButtons.OK);
+                return;
+            }
+
+            foreach (Korisnik k in Podaci.korisnici)
+            {
+                if (tb_korisnicko_ime.Text == k.korisnicko_ime1)
+                {
+                    MessageBox.Show("Korisnicko ime je zauzeto!", "Upozorenje", MessageBoxButtons.OK);
+                    tb_korisnicko_ime.Text = nadjen.korisnicko_ime1;
+                    return;
+                }
+            }
 
             nadjen.ime = tb_ime.Text;
             nadjen.prezime = tb_prezime.Text;
@@ -284,10 +319,6 @@ namespace TVP_projekat1_v2
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
                 return;
             }
-
-            /*Dugme Izmeni za Destinaciju - ogranici da admin ne moze da izmeni destinaciju, ako za istu vec postoji rezervacija
-                     niti moze da je promeni da bude ista kao neka koja vec postoji
-                     niti destinacija sme da bude u proslosti od DataTime.Today (imas kod u Dodaj)*/
 
             DataGridViewRow red = dataGridView2.CurrentRow;
             Destinacija nadjen = null;
@@ -315,26 +346,61 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            //tryparse umesto neproverenog convert
-            nadjen.mesto = tb_mesto.Text;
-            nadjen.drzava = tb_drzava.Text;
-            nadjen.cena = Convert.ToInt32(tb_cena.Text);
-            nadjen.popust = Convert.ToInt32(tb_popust.Text);
-            nadjen.br_dana = Convert.ToInt32(tb_br_dana.Text); 
-            nadjen.uk_mesta = Convert.ToInt32(tb_uk_mesta.Text);
-            // mora da se gleda i oko datuma, da li sme da se menja, za izlet/destinaciju vrv treba, 
-            // a za rezervaciju ne zato sto je datum nastao kada i sama rezervacija i nemoguce je to promeniti
+            else if (dateTimePicker2.Value.Date < DateTime.Now.Date)
+            {
+                MessageBox.Show("Morate uneti danasnji ili predstojeci datum!", "Upozorenje", MessageBoxButtons.OK);
+                return;
+            }
 
-            //ee a sada nzm za ovo razmisli sutra
-            //nadjen[7] = dateTimePicker1.Value;
+            foreach (Rezervacija r in Podaci.rezervacije)
+            {
+                if(nadjen.id_destinacije == r.id_destinacije_r)
+                {
+                    MessageBox.Show("Nije moguce menjati destinaciju za koju postoji rezervacija!", "Upozorenje", MessageBoxButtons.OK);
+                    return;
+                }
+            }
 
-            Podaci.Sacuvaj();
+            if (double.TryParse(tb_cena.Text, out double cena) &&
+                double.TryParse(tb_popust.Text, out double popust) &&
+                int.TryParse(tb_br_dana.Text, out int br_dana) &&
+                int.TryParse(tb_uk_mesta.Text, out int uk_mesta))
+            {
 
-            dataGridView2.DataSource = null;
-            dataGridView2.DataSource = Podaci.destinacije;
+                foreach (Destinacija d in Podaci.destinacije)
+                {
+                    if (d.mesto == tb_mesto.Text &&
+                        d.drzava == tb_drzava.Text &&
+                        d.cena == cena &&
+                        d.popust == popust &&
+                        d.br_dana == br_dana &&
+                        d.uk_mesta == uk_mesta &&
+                        d.datum_polaska.Date == dateTimePicker2.Value.Date)
+                    {
+                        MessageBox.Show("Ova destinacija vec postoji!", "Upozorenje", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
 
-            MessageBox.Show("Uspesno ste izmenili podatke o destinaciji!", "Obavestenje", MessageBoxButtons.OK);
-            Ocisti();
+                nadjen.mesto = tb_mesto.Text;
+                nadjen.drzava = tb_drzava.Text;
+                nadjen.cena = cena;
+                nadjen.popust = popust;
+                nadjen.br_dana = br_dana;
+                nadjen.uk_mesta = uk_mesta;
+                nadjen.datum_polaska = dateTimePicker2.Value.Date;
+
+                Podaci.Sacuvaj();
+
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = Podaci.destinacije;
+
+                MessageBox.Show("Uspesno ste izmenili podatke o destinaciji!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
+
+            }
+            else
+                MessageBox.Show("Niste uneli dobre podatke!", "Upozorenje", MessageBoxButtons.OK);
         }
 
         private void izmeni_rezervaciju_Click(object sender, EventArgs e)
@@ -348,14 +414,14 @@ namespace TVP_projekat1_v2
             DataGridViewRow red = dataGridView3.CurrentRow;
             Rezervacija nadjen = null;
             string id_korisnika = red.Cells[0].Value.ToString();
-            string id_izleta = red.Cells[1].Value.ToString();
-
-            //dodati jos neki uslov ako je korisnik rezervisao istu destinaciju dvaput 2.0
-            //na primer vreme
+            string id_destinacije = red.Cells[1].Value.ToString();
+            string datum_vreme = red.Cells[4].Value.ToString();
 
             foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r.id_korisnika_r.ToString() == id_korisnika && r.id_destinacije_r.ToString() == id_izleta)
+                if (r.id_korisnika_r.ToString() == id_korisnika &&
+                    r.id_destinacije_r.ToString() == id_destinacije &&
+                    r.datum_vreme.ToString() == datum_vreme)
                 {
                     nadjen = r;
                     break;
@@ -368,29 +434,43 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            if (tb_id_korisnika_r.Text != id_korisnika || tb_id_destinacije_r.Text != id_izleta)
+            if (tb_id_korisnika_r.Text != id_korisnika || tb_id_destinacije_r.Text != id_destinacije)
             {
                 MessageBox.Show("Zabranjeno je menjanje id-jeva!", "Upozorenje", MessageBoxButtons.OK);
                 tb_id_korisnika_r.Text = id_korisnika;
-                tb_id_destinacije_r.Text = id_izleta;
+                tb_id_destinacije_r.Text = id_destinacije;
                 return;
             }
 
-            /*Dugme Izmeni za Rezervaciju - dodati proveru da li su novi podaci za uk_cena i br_rezervisanih validni
-                     (imas kod u Dugme Dodaj za Destinaciju)*/
-            //pa reko sam
-            //ubaciti tryparse ili nesto da proverimo da li uopste moze da konvertuje
-            nadjen.uk_cena = Convert.ToInt32(tb_uk_cena.Text);
-            nadjen.br_rezervisanih = Convert.ToInt32(tb_br_rezervisanih_mesta.Text);
-            //nadjen[4] = dateTimePicker1.Value;
+            if (double.TryParse(tb_uk_cena.Text, out double uk_cena) &&
+                int.TryParse(tb_br_rezervisanih_mesta.Text, out int br_rezervisanih))
+            {
+                if (uk_cena < 0 || br_rezervisanih < 1)
+                {
+                    MessageBox.Show("Morate uneti ispravne brojeve (+)!", "Upozorenje", MessageBoxButtons.OK);
+                    return;
+                }
 
-            Podaci.Sacuvaj();
+                if (nadjen.uk_cena == uk_cena &&
+                    nadjen.br_rezervisanih == br_rezervisanih)
+                {
+                    MessageBox.Show("Niste izvrsili nikakvu izmenu!", "Upozorenje", MessageBoxButtons.OK);
+                    return;
+                }
 
-            dataGridView3.DataSource = null;
-            dataGridView3.DataSource = Podaci.rezervacije;
+                nadjen.uk_cena = uk_cena;
+                nadjen.br_rezervisanih = br_rezervisanih;
 
-            MessageBox.Show("Uspesno ste izmenili podatke o rezervaciji!", "Obavestenje", MessageBoxButtons.OK);
-            Ocisti();
+                Podaci.Sacuvaj();
+
+                dataGridView3.DataSource = null;
+                dataGridView3.DataSource = Podaci.rezervacije;
+
+                MessageBox.Show("Uspesno ste izmenili podatke o rezervaciji!", "Obavestenje", MessageBoxButtons.OK);
+                Ocisti();
+            }
+            else
+                MessageBox.Show("Niste uneli dobre podatke!", "Upozorenje", MessageBoxButtons.OK);
         }
 
         private void obrisi_korisnika_Click(object sender, EventArgs e)
@@ -485,12 +565,12 @@ namespace TVP_projekat1_v2
             {
                 if (r.id_destinacije_r.ToString() == id)
                 {
-                    MessageBox.Show($"Nije moguce obrisati destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
+                    MessageBox.Show("Nije moguce obrisati destinaciju, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
                     return;
                 }
             }
 
-            DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}?", "Pitanje", MessageBoxButtons.YesNo);
+            DialogResult yes_no = MessageBox.Show("Da li ste sigurni da zelite da obrisete destinaciju?", "Pitanje", MessageBoxButtons.YesNo);
 
             if (yes_no == DialogResult.Yes)
             {
@@ -509,7 +589,6 @@ namespace TVP_projekat1_v2
                 return;
             }
         }
-
         private void obrisi_rezervaciju_Click(object sender, EventArgs e)
         {
             if (dataGridView3.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_korisnika_r.Text) || string.IsNullOrWhiteSpace(tb_id_destinacije_r.Text))
@@ -523,12 +602,13 @@ namespace TVP_projekat1_v2
 
             string id_korisnika = red.Cells[0].Value.ToString();
             string id_destinacije = red.Cells[1].Value.ToString();
+            string datum_vreme = red.Cells[4].Value.ToString();
 
             foreach (Rezervacija r in Podaci.rezervacije)
             {
-                //dodati jos neki uslov ako je korisnik rezervisao istu destinaciju dvaput
-                //na primer vreme
-                if (r.id_korisnika_r.ToString() == id_korisnika && r.id_destinacije_r.ToString() == id_destinacije)
+                if (r.id_korisnika_r.ToString() == id_korisnika &&
+                    r.id_destinacije_r.ToString() == id_destinacije &&
+                    r.datum_vreme.ToString() == datum_vreme)
                 {
                     nadjen = r;
                     break;

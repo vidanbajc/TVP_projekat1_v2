@@ -24,4 +24,12 @@
     <lozinka>s</lozinka>
     <vrsta_korisnika>admin</vrsta_korisnika>
   </Korisnik>
+  <Korisnik>
+    <id_korisnika>4</id_korisnika>
+    <ime>ee</ime>
+    <prezime>s</prezime>
+    <korisnicko_ime1>w</korisnicko_ime1>
+    <lozinka>s</lozinka>
+    <vrsta_korisnika>admin</vrsta_korisnika>
+  </Korisnik>
 </ArrayOfKorisnik>

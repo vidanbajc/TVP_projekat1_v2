@@ -48,6 +48,12 @@
             this.dodaj_korisnika = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.id_korisnika = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.korisnicko_ime1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lozinka = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vrsta_korisnika = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Destinacije_str = new System.Windows.Forms.TabPage();
             this.lbl_datum_destinacija = new System.Windows.Forms.Label();
             this.lbl_uk_mesta = new System.Windows.Forms.Label();
@@ -71,6 +77,14 @@
             this.dodaj_destinaciju = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.id_destinacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.drzava = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.popust = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.br_dana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uk_mesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datum_polaska = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Rezervacije_str = new System.Windows.Forms.TabPage();
             this.lbl_br_rezervisanih_mesta = new System.Windows.Forms.Label();
             this.lbl_uk_cena = new System.Windows.Forms.Label();
@@ -86,20 +100,6 @@
             this.dodaj_rezervaciju = new System.Windows.Forms.Button();
             this.label27 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.id_korisnika = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.korisnicko_ime1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lozinka = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vrsta_korisnika = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_destinacije = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.drzava = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.popust = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.br_dana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uk_mesta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datum_polaska = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_korisnika_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_destinacije_r = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uk_cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -233,6 +233,7 @@
             this.tb_lozinka.Location = new System.Drawing.Point(173, 316);
             this.tb_lozinka.Margin = new System.Windows.Forms.Padding(4);
             this.tb_lozinka.Name = "tb_lozinka";
+            this.tb_lozinka.PasswordChar = '*';
             this.tb_lozinka.Size = new System.Drawing.Size(132, 22);
             this.tb_lozinka.TabIndex = 40;
             // 
@@ -347,6 +348,54 @@
             this.dataGridView1.Size = new System.Drawing.Size(703, 207);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // id_korisnika
+            // 
+            this.id_korisnika.DataPropertyName = "id_korisnika";
+            this.id_korisnika.HeaderText = "id";
+            this.id_korisnika.MinimumWidth = 6;
+            this.id_korisnika.Name = "id_korisnika";
+            this.id_korisnika.Width = 47;
+            // 
+            // ime
+            // 
+            this.ime.DataPropertyName = "ime";
+            this.ime.HeaderText = "ime";
+            this.ime.MinimumWidth = 6;
+            this.ime.Name = "ime";
+            this.ime.Width = 58;
+            // 
+            // prezime
+            // 
+            this.prezime.DataPropertyName = "prezime";
+            this.prezime.HeaderText = "prezime";
+            this.prezime.MinimumWidth = 6;
+            this.prezime.Name = "prezime";
+            this.prezime.Width = 84;
+            // 
+            // korisnicko_ime1
+            // 
+            this.korisnicko_ime1.DataPropertyName = "korisnicko_ime1";
+            this.korisnicko_ime1.HeaderText = "korisnicko ime";
+            this.korisnicko_ime1.MinimumWidth = 6;
+            this.korisnicko_ime1.Name = "korisnicko_ime1";
+            this.korisnicko_ime1.Width = 122;
+            // 
+            // lozinka
+            // 
+            this.lozinka.DataPropertyName = "lozinka";
+            this.lozinka.HeaderText = "lozinka";
+            this.lozinka.MinimumWidth = 6;
+            this.lozinka.Name = "lozinka";
+            this.lozinka.Width = 78;
+            // 
+            // vrsta_korisnika
+            // 
+            this.vrsta_korisnika.DataPropertyName = "vrsta_korisnika";
+            this.vrsta_korisnika.HeaderText = "vrsta";
+            this.vrsta_korisnika.MinimumWidth = 6;
+            this.vrsta_korisnika.Name = "vrsta_korisnika";
+            this.vrsta_korisnika.Width = 65;
             // 
             // Destinacije_str
             // 
@@ -616,6 +665,70 @@
             this.dataGridView2.TabIndex = 52;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
+            // id_destinacije
+            // 
+            this.id_destinacije.DataPropertyName = "id_destinacije";
+            this.id_destinacije.HeaderText = "id";
+            this.id_destinacije.MinimumWidth = 6;
+            this.id_destinacije.Name = "id_destinacije";
+            this.id_destinacije.Width = 47;
+            // 
+            // mesto
+            // 
+            this.mesto.DataPropertyName = "mesto";
+            this.mesto.HeaderText = "mesto";
+            this.mesto.MinimumWidth = 6;
+            this.mesto.Name = "mesto";
+            this.mesto.Width = 73;
+            // 
+            // drzava
+            // 
+            this.drzava.DataPropertyName = "drzava";
+            this.drzava.HeaderText = "drzava";
+            this.drzava.MinimumWidth = 6;
+            this.drzava.Name = "drzava";
+            this.drzava.Width = 77;
+            // 
+            // cena
+            // 
+            this.cena.DataPropertyName = "cena";
+            this.cena.HeaderText = "cena";
+            this.cena.MinimumWidth = 6;
+            this.cena.Name = "cena";
+            this.cena.Width = 66;
+            // 
+            // popust
+            // 
+            this.popust.DataPropertyName = "popust";
+            this.popust.HeaderText = "popust";
+            this.popust.MinimumWidth = 6;
+            this.popust.Name = "popust";
+            this.popust.Width = 77;
+            // 
+            // br_dana
+            // 
+            this.br_dana.DataPropertyName = "br_dana";
+            this.br_dana.HeaderText = "broj dana";
+            this.br_dana.MinimumWidth = 6;
+            this.br_dana.Name = "br_dana";
+            this.br_dana.Width = 93;
+            // 
+            // uk_mesta
+            // 
+            this.uk_mesta.DataPropertyName = "uk_mesta";
+            this.uk_mesta.HeaderText = "ukupno mesta";
+            this.uk_mesta.MinimumWidth = 6;
+            this.uk_mesta.Name = "uk_mesta";
+            this.uk_mesta.Width = 120;
+            // 
+            // datum_polaska
+            // 
+            this.datum_polaska.DataPropertyName = "datum_polaska";
+            this.datum_polaska.HeaderText = "datum";
+            this.datum_polaska.MinimumWidth = 6;
+            this.datum_polaska.Name = "datum_polaska";
+            this.datum_polaska.Width = 73;
+            // 
             // Rezervacije_str
             // 
             this.Rezervacije_str.Controls.Add(this.lbl_br_rezervisanih_mesta);
@@ -795,125 +908,13 @@
             this.dataGridView3.TabIndex = 74;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
-            // id_korisnika
-            // 
-            this.id_korisnika.DataPropertyName = "id_korisnika";
-            this.id_korisnika.HeaderText = "id";
-            this.id_korisnika.MinimumWidth = 6;
-            this.id_korisnika.Name = "id_korisnika";
-            this.id_korisnika.Width = 47;
-            // 
-            // ime
-            // 
-            this.ime.DataPropertyName = "ime";
-            this.ime.HeaderText = "ime";
-            this.ime.MinimumWidth = 6;
-            this.ime.Name = "ime";
-            this.ime.Width = 58;
-            // 
-            // prezime
-            // 
-            this.prezime.DataPropertyName = "prezime";
-            this.prezime.HeaderText = "prezime";
-            this.prezime.MinimumWidth = 6;
-            this.prezime.Name = "prezime";
-            this.prezime.Width = 84;
-            // 
-            // korisnicko_ime1
-            // 
-            this.korisnicko_ime1.DataPropertyName = "korisnicko_ime1";
-            this.korisnicko_ime1.HeaderText = "korisnicko ime";
-            this.korisnicko_ime1.MinimumWidth = 6;
-            this.korisnicko_ime1.Name = "korisnicko_ime1";
-            this.korisnicko_ime1.Width = 122;
-            // 
-            // lozinka
-            // 
-            this.lozinka.DataPropertyName = "lozinka";
-            this.lozinka.HeaderText = "lozinka";
-            this.lozinka.MinimumWidth = 6;
-            this.lozinka.Name = "lozinka";
-            this.lozinka.Width = 78;
-            // 
-            // vrsta_korisnika
-            // 
-            this.vrsta_korisnika.DataPropertyName = "vrsta_korisnika";
-            this.vrsta_korisnika.HeaderText = "vrsta";
-            this.vrsta_korisnika.MinimumWidth = 6;
-            this.vrsta_korisnika.Name = "vrsta_korisnika";
-            this.vrsta_korisnika.Width = 65;
-            // 
-            // id_destinacije
-            // 
-            this.id_destinacije.DataPropertyName = "id_destinacije";
-            this.id_destinacije.HeaderText = "id";
-            this.id_destinacije.MinimumWidth = 6;
-            this.id_destinacije.Name = "id_destinacije";
-            this.id_destinacije.Width = 47;
-            // 
-            // mesto
-            // 
-            this.mesto.DataPropertyName = "mesto";
-            this.mesto.HeaderText = "mesto";
-            this.mesto.MinimumWidth = 6;
-            this.mesto.Name = "mesto";
-            this.mesto.Width = 73;
-            // 
-            // drzava
-            // 
-            this.drzava.DataPropertyName = "drzava";
-            this.drzava.HeaderText = "drzava";
-            this.drzava.MinimumWidth = 6;
-            this.drzava.Name = "drzava";
-            this.drzava.Width = 77;
-            // 
-            // cena
-            // 
-            this.cena.DataPropertyName = "cena";
-            this.cena.HeaderText = "cena";
-            this.cena.MinimumWidth = 6;
-            this.cena.Name = "cena";
-            this.cena.Width = 66;
-            // 
-            // popust
-            // 
-            this.popust.DataPropertyName = "popust";
-            this.popust.HeaderText = "popust";
-            this.popust.MinimumWidth = 6;
-            this.popust.Name = "popust";
-            this.popust.Width = 77;
-            // 
-            // br_dana
-            // 
-            this.br_dana.DataPropertyName = "br_dana";
-            this.br_dana.HeaderText = "broj dana";
-            this.br_dana.MinimumWidth = 6;
-            this.br_dana.Name = "br_dana";
-            this.br_dana.Width = 93;
-            // 
-            // uk_mesta
-            // 
-            this.uk_mesta.DataPropertyName = "uk_mesta";
-            this.uk_mesta.HeaderText = "ukupno mesta";
-            this.uk_mesta.MinimumWidth = 6;
-            this.uk_mesta.Name = "uk_mesta";
-            this.uk_mesta.Width = 120;
-            // 
-            // datum_polaska
-            // 
-            this.datum_polaska.DataPropertyName = "datum_polaska";
-            this.datum_polaska.HeaderText = "datum";
-            this.datum_polaska.MinimumWidth = 6;
-            this.datum_polaska.Name = "datum_polaska";
-            this.datum_polaska.Width = 73;
-            // 
             // id_korisnika_r
             // 
             this.id_korisnika_r.DataPropertyName = "id_korisnika_r";
             this.id_korisnika_r.HeaderText = "id korisnika";
             this.id_korisnika_r.MinimumWidth = 6;
             this.id_korisnika_r.Name = "id_korisnika_r";
-            this.id_korisnika_r.Width = 104;
+            this.id_korisnika_r.Width = 96;
             // 
             // id_destinacije_r
             // 
@@ -921,7 +922,7 @@
             this.id_destinacije_r.HeaderText = "id destinacije";
             this.id_destinacije_r.MinimumWidth = 6;
             this.id_destinacije_r.Name = "id_destinacije_r";
-            this.id_destinacije_r.Width = 115;
+            this.id_destinacije_r.Width = 106;
             // 
             // uk_cena
             // 
@@ -929,7 +930,7 @@
             this.uk_cena.HeaderText = "ukupna cena";
             this.uk_cena.MinimumWidth = 6;
             this.uk_cena.Name = "uk_cena";
-            this.uk_cena.Width = 113;
+            this.uk_cena.Width = 104;
             // 
             // br_rezervisanih
             // 

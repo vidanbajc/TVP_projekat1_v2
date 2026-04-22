@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace TVP_projekat1_v2
 {
@@ -22,10 +23,10 @@ namespace TVP_projekat1_v2
 
         private void prijava_Click(object sender, EventArgs e)
         {
-            if (tb_korisnicko_ime == null || tb_korisnicko_ime.Text == "")
+            if (string.IsNullOrWhiteSpace(tb_korisnicko_ime.Text))
                 MessageBox.Show("Morate uneti korisnicko ime", "Upozorenje", MessageBoxButtons.OK);
 
-            else if (tb_lozinka == null || tb_lozinka.Text == "")
+            else if (string.IsNullOrWhiteSpace(tb_lozinka.Text))
                 MessageBox.Show("Morate uneti lozinku", "Upozorenje", MessageBoxButtons.OK);
 
             else
@@ -60,7 +61,7 @@ namespace TVP_projekat1_v2
                 else if (korisnik.vrsta_korisnika == "klijent")
                 {
                     MessageBox.Show($"Uspesno ste se ulogovali kao {korisnik.vrsta_korisnika} {korisnicko_ime}!", "Dobrodosli", MessageBoxButtons.OK);
-                    Klijent k = new Klijent();
+                    Klijent k = new Klijent(this, korisnicko_ime);
                     k.Show();
 
                     tb_korisnicko_ime.Clear();

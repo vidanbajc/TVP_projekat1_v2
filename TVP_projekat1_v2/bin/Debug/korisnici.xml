@@ -32,4 +32,12 @@
     <lozinka>sifra</lozinka>
     <vrsta_korisnika>klijent</vrsta_korisnika>
   </Korisnik>
+  <Korisnik>
+    <id_korisnika>5</id_korisnika>
+    <ime>b</ime>
+    <prezime>b</prezime>
+    <korisnicko_ime1>b</korisnicko_ime1>
+    <lozinka>b</lozinka>
+    <vrsta_korisnika>klijent</vrsta_korisnika>
+  </Korisnik>
 </ArrayOfKorisnik>

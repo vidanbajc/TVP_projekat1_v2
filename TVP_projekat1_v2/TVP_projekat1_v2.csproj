@@ -53,6 +53,7 @@
       <DependentUpon>Administrator.cs</DependentUpon>
     </Compile>
     <Compile Include="Destinacija.cs" />
+    <Compile Include="KlijentRezervacija.cs" />
     <Compile Include="Pocetna.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +73,9 @@
     <Compile Include="Rezervacija.cs" />
     <EmbeddedResource Include="Administrator.resx">
       <DependentUpon>Administrator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Klijent.resx">
+      <DependentUpon>Klijent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pocetna.resx">
       <DependentUpon>Pocetna.cs</DependentUpon>

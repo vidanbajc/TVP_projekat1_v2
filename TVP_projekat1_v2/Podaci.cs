@@ -13,6 +13,7 @@ namespace TVP_projekat1_v2
         public static List<Korisnik> korisnici = new List<Korisnik>();
         public static List<Destinacija> destinacije = new List<Destinacija>();
         public static List<Rezervacija> rezervacije = new List<Rezervacija>();
+        public static List<KlijentRezervacija> klijent_rezervacije = new List<KlijentRezervacija>();
 
         public static void Sacuvaj()
         {

@@ -10,3 +10,4 @@ C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2
 C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.exe
 C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.pdb
 C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.exe.config
+C:\Users\PC\Desktop\TVP_projekat1_v2\TVP_projekat1_v2\obj\Debug\TVP_projekat1_v2.Klijent.resources

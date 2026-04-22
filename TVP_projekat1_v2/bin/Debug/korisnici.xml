@@ -26,14 +26,6 @@
   </Korisnik>
   <Korisnik>
     <id_korisnika>4</id_korisnika>
-    <ime>Nemanja</ime>
-    <prezime>Marinkovic</prezime>
-    <korisnicko_ime1>ee</korisnicko_ime1>
-    <lozinka>sifra</lozinka>
-    <vrsta_korisnika>klijent</vrsta_korisnika>
-  </Korisnik>
-  <Korisnik>
-    <id_korisnika>5</id_korisnika>
     <ime>b</ime>
     <prezime>b</prezime>
     <korisnicko_ime1>b</korisnicko_ime1>

@@ -46,7 +46,7 @@ Izmeni:
 
 Obrisi:
 * da li je destinacija rezervisana - ako jeste, nema brisanja destinacije +
-* da li smo sigurni po pitanju brisanja + (vise ne zeza)
+* da li smo sigurni po pitanju brisanja +
 ####################################################################
 Rezervacija:
 

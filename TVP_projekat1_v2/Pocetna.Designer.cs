@@ -116,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 323);
+            this.ClientSize = new System.Drawing.Size(502, 323);
             this.Controls.Add(this.izlaz);
             this.Controls.Add(this.prijava);
             this.Controls.Add(this.tb_lozinka);
@@ -124,6 +124,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Pocetna";
             this.Text = "Pocetna";
             this.ResumeLayout(false);

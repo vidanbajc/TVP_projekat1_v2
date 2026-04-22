@@ -3,22 +3,43 @@
   <Rezervacija>
     <id_korisnika_r>2</id_korisnika_r>
     <id_destinacije_r>1</id_destinacije_r>
-    <uk_cena>32000</uk_cena>
-    <br_rezervisanih>2</br_rezervisanih>
+    <uk_cena>24000</uk_cena>
+    <br_rezervisanih>1</br_rezervisanih>
     <datum_vreme>2026-04-22T00:00:00+02:00</datum_vreme>
   </Rezervacija>
   <Rezervacija>
-    <id_korisnika_r>5</id_korisnika_r>
+    <id_korisnika_r>4</id_korisnika_r>
     <id_destinacije_r>1</id_destinacije_r>
-    <uk_cena>2000</uk_cena>
+    <uk_cena>48000</uk_cena>
     <br_rezervisanih>2</br_rezervisanih>
-    <datum_vreme>2026-04-22T19:52:36.2093256+02:00</datum_vreme>
+    <datum_vreme>2026-04-22T23:11:28.5524199+02:00</datum_vreme>
   </Rezervacija>
   <Rezervacija>
-    <id_korisnika_r>5</id_korisnika_r>
-    <id_destinacije_r>2</id_destinacije_r>
-    <uk_cena>1000</uk_cena>
+    <id_korisnika_r>4</id_korisnika_r>
+    <id_destinacije_r>1</id_destinacije_r>
+    <uk_cena>24000</uk_cena>
     <br_rezervisanih>1</br_rezervisanih>
-    <datum_vreme>2026-04-22T19:52:53.1425491+02:00</datum_vreme>
+    <datum_vreme>2026-04-22T23:11:34.0939912+02:00</datum_vreme>
+  </Rezervacija>
+  <Rezervacija>
+    <id_korisnika_r>4</id_korisnika_r>
+    <id_destinacije_r>1</id_destinacije_r>
+    <uk_cena>24000</uk_cena>
+    <br_rezervisanih>1</br_rezervisanih>
+    <datum_vreme>2026-04-22T23:11:42.0726214+02:00</datum_vreme>
+  </Rezervacija>
+  <Rezervacija>
+    <id_korisnika_r>4</id_korisnika_r>
+    <id_destinacije_r>2</id_destinacije_r>
+    <uk_cena>48000</uk_cena>
+    <br_rezervisanih>2</br_rezervisanih>
+    <datum_vreme>2026-04-22T23:26:43.3244081+02:00</datum_vreme>
+  </Rezervacija>
+  <Rezervacija>
+    <id_korisnika_r>4</id_korisnika_r>
+    <id_destinacije_r>2</id_destinacije_r>
+    <uk_cena>24000</uk_cena>
+    <br_rezervisanih>1</br_rezervisanih>
+    <datum_vreme>2026-04-22T23:27:42.3028032+02:00</datum_vreme>
   </Rezervacija>
 </ArrayOfRezervacija>

@@ -71,18 +71,20 @@ namespace TVP_projekat1_v2
                 korisnici.Add(new Korisnik(1, "a", "a", "a", "a", "admin"));
                 korisnici.Add(new Korisnik(2, "Ognjen", "Colovic", "cj", "sifra", "klijent"));
                 korisnici.Add(new Korisnik(3, "Nemanja", "Marinkovic", "sj", "sifra", "klijent"));
+                korisnici.Add(new Korisnik(4, "b", "b", "b", "b", "klijent"));
             }
 
             if (File.Exists("destinacije.xml")) { }
             else
             {
-                destinacije.Add(new Destinacija(1, "Arandjelovac", "Srbija", 32000, 6000, 7, 2, DateTime.Today));
-                destinacije.Add(new Destinacija(2, "Topola", "Srbija", 32000, 4000, 5, 3, DateTime.Today));
+                destinacije.Add(new Destinacija(1, "Arandjelovac", "Srbija", 24000, 6000, 7, 5, DateTime.Now.Date));
+                destinacije.Add(new Destinacija(2, "Topola", "Srbija", 24000, 4000, 5, 3, DateTime.Now.Date));
+                destinacije.Add(new Destinacija(3, "Jagodina", "Srbija", 32000, 4000, 5, 3, new DateTime(2026, 4, 18)));
             }
 
             if (File.Exists("rezervacije.xml")) { }
             else
-                rezervacije.Add(new Rezervacija(2, 1, 32000, 2, DateTime.Today));
+                rezervacije.Add(new Rezervacija(2, 1, 24000, 1, DateTime.Now.Date));
 
             Sacuvaj();
         }

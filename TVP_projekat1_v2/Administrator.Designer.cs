@@ -123,7 +123,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(732, 533);
+            this.tabControl1.Size = new System.Drawing.Size(742, 533);
             this.tabControl1.TabIndex = 0;
             // 
             // Korisnici_str
@@ -149,7 +149,7 @@
             this.Korisnici_str.Location = new System.Drawing.Point(4, 25);
             this.Korisnici_str.Name = "Korisnici_str";
             this.Korisnici_str.Padding = new System.Windows.Forms.Padding(3);
-            this.Korisnici_str.Size = new System.Drawing.Size(724, 504);
+            this.Korisnici_str.Size = new System.Drawing.Size(734, 504);
             this.Korisnici_str.TabIndex = 0;
             this.Korisnici_str.Text = "Korisnici";
             this.Korisnici_str.UseVisualStyleBackColor = true;
@@ -952,8 +952,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(732, 533);
+            this.ClientSize = new System.Drawing.Size(742, 533);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Administrator";
             this.Text = "Administrator";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Administrator_FormClosed_1);

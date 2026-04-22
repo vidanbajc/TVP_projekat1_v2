@@ -567,8 +567,10 @@ namespace TVP_projekat1_v2
                 Podaci.korisnici.Remove(nadjen);
                 Podaci.Sacuvaj();
 
+                dataGridView1.SelectionChanged -= dataGridView3_SelectionChanged;
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Podaci.korisnici;
+                dataGridView1.SelectionChanged += dataGridView3_SelectionChanged;
 
                 MessageBox.Show($"Uspesno ste obrisali korisnika {nadjen.korisnicko_ime1}!", "Obavestenje", MessageBoxButtons.OK);
                 Ocisti();
@@ -622,9 +624,11 @@ namespace TVP_projekat1_v2
             {
                 Podaci.destinacije.Remove(nadjen);
                 Podaci.Sacuvaj();
-
+                
+                dataGridView2.SelectionChanged -= dataGridView3_SelectionChanged;
                 dataGridView2.DataSource = null;
                 dataGridView2.DataSource = Podaci.destinacije;
+                dataGridView2.SelectionChanged += dataGridView3_SelectionChanged;
 
                 MessageBox.Show($"Uspesno ste obrisali destinaciju {nadjen.id_destinacije} - {nadjen.mesto} {nadjen.drzava}!", "Obavestenje", MessageBoxButtons.OK);
                 Ocisti();
@@ -672,11 +676,14 @@ namespace TVP_projekat1_v2
 
                 if (yes_no == DialogResult.Yes)
                 {
+                    
                     Podaci.rezervacije.Remove(nadjen);
                     Podaci.Sacuvaj();
 
+                    dataGridView3.SelectionChanged -= dataGridView3_SelectionChanged;
                     dataGridView3.DataSource = null;
                     dataGridView3.DataSource = Podaci.rezervacije;
+                    dataGridView3.SelectionChanged += dataGridView3_SelectionChanged;
 
                     MessageBox.Show($"Uspesno ste obrisali rezervaciju {nadjen.id_korisnika_r} - {nadjen.id_destinacije_r} - {nadjen.datum_vreme}!", "Obavestenje", MessageBoxButtons.OK);
                     Ocisti();

@@ -65,7 +65,7 @@ namespace TVP_projekat1_v2
                 MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
             }
 
-            else if (tb_vrsta.Text != "admin" && tb_vrsta.Text != "klijent")
+            else if (tb_vrsta.Text.ToLower() != "admin" && tb_vrsta.Text.ToLower() != "klijent")
                 MessageBox.Show("Morate uneti validnu vrstu korisnika!", "Upozorenje", MessageBoxButtons.OK);
 
             else
@@ -74,9 +74,9 @@ namespace TVP_projekat1_v2
 
                 foreach (Korisnik k in Podaci.korisnici)
                 {
-                    if (k.korisnicko_ime1.ToString() == korisnicko_ime)
+                    if (k.korisnicko_ime1.ToString().ToLower() == korisnicko_ime.ToLower())
                     {
-                        MessageBox.Show($"Korisnicko ime {korisnicko_ime} je zauzeto, pokusajte ponovo!", "Upozorenje", MessageBoxButtons.OK);
+                        MessageBox.Show($"Korisnicko ime {korisnicko_ime.ToLower()} je zauzeto, pokusajte ponovo!", "Upozorenje", MessageBoxButtons.OK);
                         return;
                     }
                 }
@@ -88,7 +88,7 @@ namespace TVP_projekat1_v2
                     id_korisnika: id,
                     ime: tb_ime.Text,
                     prezime: tb_prezime.Text,
-                    korisnicko_ime1: tb_korisnicko_ime.Text,
+                    korisnicko_ime1: tb_korisnicko_ime.Text.ToLower(),
                     lozinka: tb_lozinka.Text,
                     vrsta_korisnika: tb_vrsta.Text
                 ));
@@ -105,9 +105,12 @@ namespace TVP_projekat1_v2
 
         private void dodaj_destinaciju_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tb_mesto.Text) || string.IsNullOrWhiteSpace(tb_drzava.Text) ||
-                   string.IsNullOrWhiteSpace(tb_cena.Text) || string.IsNullOrWhiteSpace(tb_popust.Text) ||
-                   string.IsNullOrWhiteSpace(tb_br_dana.Text) || string.IsNullOrWhiteSpace(tb_uk_mesta.Text))
+            if (string.IsNullOrWhiteSpace(tb_mesto.Text) ||
+                string.IsNullOrWhiteSpace(tb_drzava.Text) ||
+                string.IsNullOrWhiteSpace(tb_cena.Text) || 
+                string.IsNullOrWhiteSpace(tb_popust.Text) ||
+                string.IsNullOrWhiteSpace(tb_br_dana.Text) ||
+                string.IsNullOrWhiteSpace(tb_uk_mesta.Text))
             {
                 MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
             }
@@ -128,8 +131,8 @@ namespace TVP_projekat1_v2
 
                 foreach(Destinacija d in Podaci.destinacije)
                 {
-                    if (d.mesto == tb_mesto.Text &&
-                        d.drzava == tb_drzava.Text &&
+                    if (d.mesto.ToLower() == tb_mesto.Text.ToLower() &&
+                        d.drzava.ToLower() == tb_drzava.Text.ToLower() &&
                         d.cena == cena &&
                         d.popust == popust &&
                         d.br_dana == br_dana &&
@@ -216,6 +219,8 @@ namespace TVP_projekat1_v2
                     return;
                 }
 
+                // videti sta i kako zbog current time
+
                 Podaci.rezervacije.Add(new Rezervacija
                 (
                     id_korisnika_r: id_korisnika,
@@ -239,6 +244,16 @@ namespace TVP_projekat1_v2
 
         private void izmeni_korisnika_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tb_ime.Text) ||
+                string.IsNullOrWhiteSpace(tb_prezime.Text) ||
+                string.IsNullOrWhiteSpace(tb_korisnicko_ime.Text) ||
+                string.IsNullOrWhiteSpace(tb_lozinka.Text) ||
+                string.IsNullOrWhiteSpace(tb_vrsta.Text))
+            {
+                MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
+                return;
+            }
+
             if (dataGridView1.CurrentRow == null || string.IsNullOrWhiteSpace(tb_id_korisnik.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
@@ -264,7 +279,7 @@ namespace TVP_projekat1_v2
                 return;
             }
 
-            if (tb_vrsta.Text != "admin" && tb_vrsta.Text != "klijent")
+            if (tb_vrsta.Text.ToLower() != "admin" && tb_vrsta.Text.ToLower() != "klijent")
             {
                 MessageBox.Show("Morate uneti validnu vrstu korisnika!", "Upozorenje", MessageBoxButtons.OK);
                 return;
@@ -279,7 +294,7 @@ namespace TVP_projekat1_v2
 
             if(nadjen.ime == tb_ime.Text &&
                nadjen.prezime == tb_prezime.Text &&
-               nadjen.korisnicko_ime1 == tb_korisnicko_ime.Text &&
+               nadjen.korisnicko_ime1.ToLower() == tb_korisnicko_ime.Text.ToLower() &&
                nadjen.lozinka == tb_lozinka.Text &&
                nadjen.vrsta_korisnika == tb_vrsta.Text)
             {
@@ -289,7 +304,7 @@ namespace TVP_projekat1_v2
 
             foreach (Korisnik k in Podaci.korisnici)
             {
-                if (tb_korisnicko_ime.Text == k.korisnicko_ime1)
+                if (tb_korisnicko_ime.Text.ToLower() == k.korisnicko_ime1.ToLower() && nadjen.id_korisnika != k.id_korisnika)
                 {
                     MessageBox.Show("Korisnicko ime je zauzeto!", "Upozorenje", MessageBoxButtons.OK);
                     tb_korisnicko_ime.Text = nadjen.korisnicko_ime1;
@@ -299,9 +314,9 @@ namespace TVP_projekat1_v2
 
             nadjen.ime = tb_ime.Text;
             nadjen.prezime = tb_prezime.Text;
-            nadjen.korisnicko_ime1 = tb_korisnicko_ime.Text;
+            nadjen.korisnicko_ime1 = tb_korisnicko_ime.Text.ToLower();
             nadjen.lozinka = tb_lozinka.Text;
-            nadjen.vrsta_korisnika = tb_vrsta.Text;
+            nadjen.vrsta_korisnika = tb_vrsta.Text.ToLower();
 
             Podaci.Sacuvaj();
 
@@ -314,6 +329,17 @@ namespace TVP_projekat1_v2
 
         private void izmeni_destinaciju_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tb_mesto.Text) ||
+                string.IsNullOrWhiteSpace(tb_drzava.Text) ||
+                string.IsNullOrWhiteSpace(tb_cena.Text) ||
+                string.IsNullOrWhiteSpace(tb_popust.Text) ||
+                string.IsNullOrWhiteSpace(tb_br_dana.Text) ||
+                string.IsNullOrWhiteSpace(tb_uk_mesta.Text))
+            {
+                MessageBox.Show("Morate popuniti sva neophodna polja!", "Upozorenje", MessageBoxButtons.OK);
+                return;
+            }
+
             if (dataGridView2.CurrentRow == null && string.IsNullOrWhiteSpace(tb_id_destinacije.Text))
             {
                 MessageBox.Show("Morate selektovati red sa id-jem!", "Upozorenje", MessageBoxButtons.OK);
@@ -367,19 +393,38 @@ namespace TVP_projekat1_v2
                 int.TryParse(tb_uk_mesta.Text, out int uk_mesta))
             {
 
+                if (cena < 0 || popust < 0 || br_dana < 1 || uk_mesta < 1)
+                {
+                    MessageBox.Show("Morate uneti ispravne brojeve (+)!", "Upozorenje", MessageBoxButtons.OK);
+                    return;
+                }
+
                 foreach (Destinacija d in Podaci.destinacije)
                 {
-                    if (d.mesto == tb_mesto.Text &&
-                        d.drzava == tb_drzava.Text &&
+                    if (d.mesto.ToLower() == tb_mesto.Text.ToLower() &&
+                        d.drzava.ToLower() == tb_drzava.Text.ToLower() &&
                         d.cena == cena &&
                         d.popust == popust &&
                         d.br_dana == br_dana &&
                         d.uk_mesta == uk_mesta &&
-                        d.datum_polaska.Date == dateTimePicker2.Value.Date)
+                        d.datum_polaska.Date == dateTimePicker2.Value.Date &&
+                        d.id_destinacije != nadjen.id_destinacije)
                     {
                         MessageBox.Show("Ova destinacija vec postoji!", "Upozorenje", MessageBoxButtons.OK);
                         return;
                     }
+                }
+
+                if (nadjen.mesto.ToLower() == tb_mesto.Text.ToLower() &&
+                    nadjen.drzava.ToLower() == tb_drzava.Text.ToLower() &&
+                    nadjen.cena == cena &&
+                    nadjen.popust == popust &&
+                    nadjen.br_dana == br_dana &&
+                    nadjen.uk_mesta == uk_mesta &&
+                    nadjen.datum_polaska.Date == dateTimePicker2.Value.Date)
+                {
+                    MessageBox.Show("Niste izvrsili nikakvu validnu izmenu!", "Upozorenje", MessageBoxButtons.OK);
+                    return;
                 }
 
                 nadjen.mesto = tb_mesto.Text;
@@ -460,6 +505,7 @@ namespace TVP_projekat1_v2
 
                 nadjen.uk_cena = uk_cena;
                 nadjen.br_rezervisanih = br_rezervisanih;
+                //automatski menja datum na current time, videti sta i kako
 
                 Podaci.Sacuvaj();
 
@@ -509,12 +555,12 @@ namespace TVP_projekat1_v2
             {
                 if (r.id_korisnika_r.ToString() == id)
                 {
-                    MessageBox.Show($"Nije moguce obrisati korisnika {tb_id_korisnik.Text} - {tb_korisnicko_ime.Text}, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
+                    MessageBox.Show($"Nije moguce obrisati korisnika {nadjen.id_korisnika} - {nadjen.korisnicko_ime1}, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
                     return;
                 }
             }
 
-            DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete korisnika {tb_id_korisnik.Text} - {tb_korisnicko_ime.Text}?", "Pitanje", MessageBoxButtons.YesNo);
+            DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete korisnika {nadjen.id_korisnika} - {nadjen.korisnicko_ime1}?", "Pitanje", MessageBoxButtons.YesNo);
 
             if (yes_no == DialogResult.Yes)
             {
@@ -524,7 +570,7 @@ namespace TVP_projekat1_v2
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = Podaci.korisnici;
 
-                MessageBox.Show($"Uspesno ste obrisali korisnika {tb_korisnicko_ime.Text}!", "Obavestenje", MessageBoxButtons.OK);
+                MessageBox.Show($"Uspesno ste obrisali korisnika {nadjen.korisnicko_ime1}!", "Obavestenje", MessageBoxButtons.OK);
                 Ocisti();
             }
             else
@@ -563,7 +609,7 @@ namespace TVP_projekat1_v2
 
             foreach (Rezervacija r in Podaci.rezervacije)
             {
-                if (r.id_destinacije_r.ToString() == id)
+                if (r.id_destinacije_r == nadjen.id_destinacije)
                 {
                     MessageBox.Show("Nije moguce obrisati destinaciju, posto ima rezervaciju!", "Upozorenje", MessageBoxButtons.OK);
                     return;
@@ -580,7 +626,7 @@ namespace TVP_projekat1_v2
                 dataGridView2.DataSource = null;
                 dataGridView2.DataSource = Podaci.destinacije;
 
-                MessageBox.Show($"Uspesno ste obrisali destinaciju {tb_id_destinacije.Text} - {tb_mesto.Text} {tb_drzava.Text}!", "Obavestenje", MessageBoxButtons.OK);
+                MessageBox.Show($"Uspesno ste obrisali destinaciju {nadjen.id_destinacije} - {nadjen.mesto} {nadjen.drzava}!", "Obavestenje", MessageBoxButtons.OK);
                 Ocisti();
             }
             else
@@ -622,7 +668,7 @@ namespace TVP_projekat1_v2
             }
             else
             {
-                DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete rezervaciju {id_korisnika} - {id_destinacije}?", "Pitanje", MessageBoxButtons.YesNo);
+                DialogResult yes_no = MessageBox.Show($"Da li ste sigurni da zelite da obrisete rezervaciju {id_korisnika} - {id_destinacije} - {datum_vreme}?", "Pitanje", MessageBoxButtons.YesNo);
 
                 if (yes_no == DialogResult.Yes)
                 {
@@ -632,7 +678,7 @@ namespace TVP_projekat1_v2
                     dataGridView3.DataSource = null;
                     dataGridView3.DataSource = Podaci.rezervacije;
 
-                    MessageBox.Show($"Uspesno ste obrisali rezervaciju {tb_id_korisnika_r.Text} - {tb_id_destinacije_r}!", "Obavestenje", MessageBoxButtons.OK);
+                    MessageBox.Show($"Uspesno ste obrisali rezervaciju {nadjen.id_korisnika_r} - {nadjen.id_destinacije_r} - {nadjen.datum_vreme}!", "Obavestenje", MessageBoxButtons.OK);
                     Ocisti();
                 }
                 else

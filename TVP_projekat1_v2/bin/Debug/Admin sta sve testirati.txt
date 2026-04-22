@@ -1,0 +1,71 @@
+STA TREBA DODATI
+####################################################################
+* u okviru promene podataka, staviti sve .toLower ili .toUpper da ne bi proslo Ana => ana +
+* treba uraditi ono za proveru slobodnih mesta i tako to, mada je nesto tako za klijent formu
+####################################################################
+
+
+PROVERA
+
+####################################################################
+Korisnik:
+
+Dodaj:
+* da li postoje podaci u textBoxovima +
+* da li je korisnicko ime vec zauzeto +
+* provera vrste korisnika +
+
+Izmeni:
+* zabranjeno menjanje id +
+* da li postoje podaci u textBoxovima +
+* da li su podaci promenjeni u textBoxovima +
+* da li je korisnicko ime vec zauzeto +
+* provera vrste korisnika +
+
+Obrisi:
+* da li korisnik ima rezervaciju - ako ima, nema brisanja korisnika +
+* da li je korisnik admin preko kog smo ulogovani +
+* da li smo sigurni po pitanju brisanja +
+
+####################################################################
+Destinacija:
+
+Dodaj:
+* da li postoje podaci u textBoxovima +
+* da li destinacija vec postoji - da se poklapa sve, ukljucjuci datum i vreme +
+* da li su brojcani podaci validni +
+* da li je datum validan +
+
+Izmeni:
+* zabranjeno menjanje id +
+* da li postoje podaci u textBoxovima +
+* da li su podaci promenjeni u textBoxovima + 
+* da li destinacija vec postoji - da se poklapa sve, ukljucjuci datum i vreme +
+* da li su brojcani podaci validni +
+* da li je datum validan +
+
+Obrisi:
+* da li je destinacija rezervisana - ako jeste, nema brisanja destinacije +
+* da li smo sigurni po pitanju brisanja + (vise ne zeza)
+####################################################################
+Rezervacija:
+
+Dodaj:
+* da li postoje podaci u textBoxovima +
+* da li rezervacija vec postoji - da se poklapa sve + (napravi rezervaciju, ali to nije ista zato sto uvek stavlja current time)
+* da li su brojcani podaci validni +
+* da li korisnik i destinacija stvarno postoje +
+
+Izmeni:
+* zabranjeno menjanje id +
+* da li postoje podaci u textBoxovima +
+* da li rezervacija vec postoji - da se poklapa sve + 
+* da li su brojcani podaci validni +
+* da li korisnik i destinacija stvarno postoje +
+
+Obrisi:
+* da li smo sigurni po pitanju brisanja  + 
+####################################################################
+
+
+

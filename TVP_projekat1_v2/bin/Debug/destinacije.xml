@@ -8,7 +8,7 @@
     <popust>6000</popust>
     <br_dana>7</br_dana>
     <uk_mesta>2</uk_mesta>
-    <datum_polaska>2026-04-21T00:00:00+02:00</datum_polaska>
+    <datum_polaska>2026-04-22T00:00:00+02:00</datum_polaska>
   </Destinacija>
   <Destinacija>
     <id_destinacije>2</id_destinacije>
@@ -18,26 +18,6 @@
     <popust>4000</popust>
     <br_dana>5</br_dana>
     <uk_mesta>3</uk_mesta>
-    <datum_polaska>2026-04-21T00:00:00+02:00</datum_polaska>
-  </Destinacija>
-  <Destinacija>
-    <id_destinacije>3</id_destinacije>
-    <mesto>Smederevo</mesto>
-    <drzava>Srbija</drzava>
-    <cena>32000</cena>
-    <popust>6000</popust>
-    <br_dana>10</br_dana>
-    <uk_mesta>3</uk_mesta>
-    <datum_polaska>2026-04-22T00:00:00</datum_polaska>
-  </Destinacija>
-  <Destinacija>
-    <id_destinacije>4</id_destinacije>
-    <mesto>Nis</mesto>
-    <drzava>Srbija</drzava>
-    <cena>27000</cena>
-    <popust>4000</popust>
-    <br_dana>7</br_dana>
-    <uk_mesta>2</uk_mesta>
-    <datum_polaska>2026-04-22T00:00:00</datum_polaska>
+    <datum_polaska>2026-04-22T00:00:00+02:00</datum_polaska>
   </Destinacija>
 </ArrayOfDestinacija>

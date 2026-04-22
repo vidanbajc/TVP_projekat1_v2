@@ -68,7 +68,8 @@ namespace TVP_projekat1_v2
             else
             {
                 korisnici.Add(new Korisnik(1, "a", "a", "a", "a", "admin"));
-                korisnici.Add(new Korisnik(2, "Ilija", "Colovic", "klijent", "klijent", "klijent"));
+                korisnici.Add(new Korisnik(2, "Ognjen", "Colovic", "cj", "sifra", "klijent"));
+                korisnici.Add(new Korisnik(3, "Nemanja", "Marinkovic", "sj", "sifra", "klijent"));
             }
 
             if (File.Exists("destinacije.xml")) { }

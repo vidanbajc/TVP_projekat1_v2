@@ -10,26 +10,26 @@
   </Korisnik>
   <Korisnik>
     <id_korisnika>2</id_korisnika>
-    <ime>Izdaja</ime>
+    <ime>Ognjen</ime>
     <prezime>Colovic</prezime>
-    <korisnicko_ime1>klijent</korisnicko_ime1>
-    <lozinka>klijent</lozinka>
+    <korisnicko_ime1>cj</korisnicko_ime1>
+    <lozinka>sifra</lozinka>
     <vrsta_korisnika>klijent</vrsta_korisnika>
   </Korisnik>
   <Korisnik>
     <id_korisnika>3</id_korisnika>
-    <ime>s</ime>
-    <prezime>s</prezime>
-    <korisnicko_ime1>s</korisnicko_ime1>
-    <lozinka>s</lozinka>
-    <vrsta_korisnika>admin</vrsta_korisnika>
+    <ime>Nemanja</ime>
+    <prezime>Marinkovic</prezime>
+    <korisnicko_ime1>sj</korisnicko_ime1>
+    <lozinka>sifra</lozinka>
+    <vrsta_korisnika>klijent</vrsta_korisnika>
   </Korisnik>
   <Korisnik>
     <id_korisnika>4</id_korisnika>
-    <ime>ee</ime>
-    <prezime>s</prezime>
-    <korisnicko_ime1>w</korisnicko_ime1>
-    <lozinka>s</lozinka>
-    <vrsta_korisnika>admin</vrsta_korisnika>
+    <ime>Nemanja</ime>
+    <prezime>Marinkovic</prezime>
+    <korisnicko_ime1>ee</korisnicko_ime1>
+    <lozinka>sifra</lozinka>
+    <vrsta_korisnika>klijent</vrsta_korisnika>
   </Korisnik>
 </ArrayOfKorisnik>
